@@ -1,5 +1,5 @@
 import React from 'react';
-import * as SplashScreen from 'expo-splash-screen';
+import 'react-native-gesture-handler';
 
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
@@ -20,10 +20,15 @@ import { CarDetails } from "./src/screens/CarDetails";
 
 import theme from './src/styles/theme';
 import { Home } from './src/screens/Home';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-
+import * as SplashScreen from 'expo-splash-screen' 
+import { Scheduling } from './src/screens/Scheduling';
+import { SchedulingDetails } from './src/screens/SchedulingDetails';
+import { SchedulingComplete } from './src/screens/SchedulingComplete';
 
 export default function App() {
+  SplashScreen.preventAutoHideAsync();
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -33,13 +38,17 @@ export default function App() {
   });
 
   if(!fontsLoaded){
-    return <AppLoading />
+    return null;
   }
 
+  SplashScreen.hideAsync();
+
   return (
+    <GestureHandlerRootView style={{ flex: 1}}>
     <ThemeProvider theme={theme}>
-      <CarDetails />
+      <SchedulingComplete />
     </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
 
