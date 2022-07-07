@@ -1,9 +1,9 @@
 import { RFValue } from 'react-native-responsive-fontsize';
-import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
+import { BorderlessButton, BorderlessButtonProps, RectButton, RectButtonProps } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { ReactNode } from 'react';
 
-interface ButtonProps {
+interface ButtonProps extends BorderlessButtonProps {
   color?: string;
 }
 

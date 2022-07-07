@@ -1,5 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
+import { ParamListBase, NavigationProp ,useNavigation } from '@react-navigation/native';
+
 
 import { useTheme } from 'styled-components';
 
@@ -25,6 +27,11 @@ import {
 export function Scheduling(){
     const theme = useTheme();
 
+    const navigation = useNavigation<NavigationProp<ParamListBase>>();
+    function handleConfirmRental(){
+        navigation.navigate('SchedulingDetails');
+    }
+
  return (
  <Container>
     <Header>
@@ -34,7 +41,7 @@ export function Scheduling(){
             backgroundColor="transparent"
         />
         <BackButton 
-        onPress={() => {}} 
+        onPress={() => {handleConfirmRental}} 
         color= {theme.colors.shape}
         />
     <Title>
@@ -69,7 +76,7 @@ export function Scheduling(){
    </Content>
 
    <Footer>
-        <Button title='Confirmar' />
+        <Button title='Confirmar' onPress={handleConfirmRental}/>
    </Footer>
  </Container>
  );

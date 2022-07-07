@@ -16,7 +16,7 @@ import {
   Archivo_600SemiBold
 } from '@expo-google-fonts/archivo';
 
-import { CarDetails } from "./src/screens/CarDetails";
+import { Routes } from "./src/routes";
 
 import theme from './src/styles/theme';
 import { Home } from './src/screens/Home';
@@ -46,7 +46,7 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1}}>
     <ThemeProvider theme={theme}>
-      <SchedulingComplete />
+      <Routes />
     </ThemeProvider>
     </GestureHandlerRootView>
   );

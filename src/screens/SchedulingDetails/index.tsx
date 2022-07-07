@@ -45,9 +45,15 @@ import {
 
   
 } from './styles';
+import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 
 
 export function SchedulingDetails(){
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+    function handleConfirm(){
+        navigation.navigate('SchedulingComplete');
+    }
+
  return (
  <Container>
    <Header>
@@ -122,7 +128,7 @@ export function SchedulingDetails(){
   </Content>
 
   <Footer>
-    <Button title="Confirmar" color='red'/>
+    <Button title="Confirmar" color='red' onPress={handleConfirm}/>
   </Footer>
 
  </Container>

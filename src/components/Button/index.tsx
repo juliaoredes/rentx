@@ -1,18 +1,19 @@
 import React from 'react';
-import { RectButtonProps } from 'react-native-gesture-handler';
+import { BorderlessButtonProps } from 'react-native-gesture-handler';
 
 import {
  Container,
  Title,
 } from './styles';
 
-interface Props{
+interface Props extends BorderlessButtonProps{
     title: string;
     color?: string;
+    
 }
 
-const Button: React.FC<Props> = ({ title, ... rest }) =>(
- <Container  {... rest}>
+const Button: React.FC<Props> = ({ title, ... rest}) =>(
+ <Container  {... rest} >
     <Title>{title}</Title>
  </Container>
  );
