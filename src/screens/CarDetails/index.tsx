@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 
+import { CarDTO } from '../../dtos/CarDTO';
 
 import {
   Container,
@@ -25,7 +26,6 @@ import {
   About,
   Footer,
 } from './styles';
-import { CarDTO } from '../../dtos/CarDTO';
 
 interface Params {
   car: CarDTO;
