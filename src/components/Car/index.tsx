@@ -1,7 +1,11 @@
 import React from 'react';
 import { RectButtonProps } from 'react-native-gesture-handler';
 
+import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
+import { Accessory } from '../../components/Accessory';
+
 import GasolineSvg from '../../assets/gasoline.svg'
+import { ImageSlider } from '../ImageSlider';
 
 import {
  Container,
@@ -32,30 +36,32 @@ interface Props extends RectButtonProps{
 }
 
 export function Car({ data, ... rest } : Props){
- return (
- <Container {... rest}>
+    
+    return (
+    <Container {... rest}>
 
-    <Details>
-        <Brand>{data.brand}</Brand>
-        <Name>{data.name}</Name>
+        <Details>
+            <Brand>{data.brand}</Brand>
+            <Name>{data.name}</Name>
 
-        <About>
-            <Rent>
-                <Period>{data.rent.period}</Period>
-                <Price>`R$ ${data.rent.price}`</Price>
-            </Rent>
+            <About>
+                <Rent>
+                    <Period>{data.rent.period}</Period>
+                    <Price>`R$ ${data.rent.price}`</Price>
+                </Rent>
 
-            <Type>
+                <Type>
                 <GasolineSvg />
-            </Type>
-        </About>
-    </Details>
+                </Type>
+            </About>
+        </Details>
 
-    <CarImage 
-        source={{ uri: data.thumbnail }} 
-        resizeMode="contain"
-    />
+        <CarImage 
+            source={{ uri: data.thumbnail }} 
+            resizeMode="contain"
+            
+        />
 
- </Container>
- );
+    </Container>
+    );
 }

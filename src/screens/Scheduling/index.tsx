@@ -32,52 +32,57 @@ export function Scheduling(){
         navigation.navigate('SchedulingDetails');
     }
 
- return (
- <Container>
-    <Header>
-        <StatusBar 
-            barStyle="light-content"
-            translucent
-            backgroundColor="transparent"
-        />
-        <BackButton 
-        onPress={() => {handleConfirmRental}} 
-        color= {theme.colors.shape}
-        />
-    <Title>
-        Escolha uma {'\n'}
-        data de início e {'\n'}
-        fim de aluguel {'\n'}
-    </Title>
+        function handleBack(){
+        navigation.goBack();
+    }
+    
 
-    <RentalPeriod>
-        <DateInfo>
-            <DateTitle>DE</DateTitle>
-            <DateValue selected={false}>
-                18/06/2021
-            </DateValue>
-        </DateInfo>
+    return (
+    <Container>
+        <Header>
+            <StatusBar 
+                barStyle="light-content"
+                translucent
+                backgroundColor="transparent"
+            />
+            <BackButton 
+            onPress={handleBack}
+            color= {theme.colors.shape}
+            />
+        <Title>
+            Escolha uma {'\n'}
+            data de início e {'\n'}
+            fim de aluguel {'\n'}
+        </Title>
 
-        <ArrowSvg />
+        <RentalPeriod>
+            <DateInfo>
+                <DateTitle>DE</DateTitle>
+                <DateValue selected={false}>
+                    18/06/2021
+                </DateValue>
+            </DateInfo>
 
-        <DateInfo>
-            <DateTitle>ATÉ</DateTitle>
-            <DateValue selected={false}>
-                18/06/2021
-            </DateValue>  
-        </DateInfo>
-    </RentalPeriod>
+            <ArrowSvg />
+
+            <DateInfo>
+                <DateTitle>ATÉ</DateTitle>
+                <DateValue selected={false}>
+                    18/06/2021
+                </DateValue>  
+            </DateInfo>
+        </RentalPeriod>
 
 
-   </Header>
+    </Header>
 
-   <Content>
-        <Calendar />
-   </Content>
+    <Content>
+            <Calendar />
+    </Content>
 
-   <Footer>
-        <Button title='Confirmar' onPress={handleConfirmRental}/>
-   </Footer>
- </Container>
- );
+    <Footer>
+            <Button title='Confirmar' onPress={handleConfirmRental}/>
+    </Footer>
+    </Container>
+    );
 }
