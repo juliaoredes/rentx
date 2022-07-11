@@ -29,7 +29,7 @@ export function Home(){
     // const carData = {
     //     brand: 'Audi',
     //     name: 'RS 5 Coupé',
-    //     rent: {
+    //     rent: { 
     //         period: 'AO DIA',
     //         price: 120,
     //     },
