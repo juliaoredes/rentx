@@ -8,6 +8,7 @@ export function generateInterval(start: DayProps, end: DayProps) {
     let interval: MarkedDateProps = {};
 
     eachDayOfInterval({ start: parseISO(start.dateString), end: parseISO(end.dateString)})
+
     .forEach(( item ) => {
         const date = format(getPlatformDate(item), 'yyyy-MM-dd');
 

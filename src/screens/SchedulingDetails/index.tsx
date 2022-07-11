@@ -45,19 +45,24 @@ import {
 
   
 } from './styles';
-import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
+import { NavigationProp, ParamListBase, useNavigation, useTheme } from '@react-navigation/native';
 
 
 export function SchedulingDetails(){
+  const theme = useTheme();
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
     function handleConfirm(){
         navigation.navigate('SchedulingComplete');
     }
 
+    function handleBack(){
+      navigation.goBack();
+    }
+
  return (
  <Container>
    <Header>
-      <BackButton onPress={() => {}} />
+      <BackButton onPress={handleBack} />
    </Header>
   <CarImages>
     <ImageSlider  
@@ -128,7 +133,7 @@ export function SchedulingDetails(){
   </Content>
 
   <Footer>
-    <Button title="Confirmar" color='red' onPress={handleConfirm}/>
+    <Button title="Confirmar" color={theme.colors.primary} onPress={handleConfirm}/>
   </Footer>
 
  </Container>
