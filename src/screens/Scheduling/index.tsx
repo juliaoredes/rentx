@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StatusBar, Alert } from 'react-native';
 import { BackButton } from '../../components/BackButton';
 import { ParamListBase, NavigationProp, useNavigation, useRoute } from '@react-navigation/native';
+import { format } from 'date-fns';
 
 
 import { useTheme } from 'styled-components';
@@ -33,7 +34,6 @@ import {
     Footer,
 
 } from './styles';
-import { format } from 'date-fns';
 
 interface RentalPeriod {
     startFormated: string;
@@ -60,7 +60,7 @@ export function Scheduling(){
             Alert.alert('Selecione o intervalo para alugar.')
         }else{
             navigation.navigate('SchedulingDetails', {
-                //car,
+                car,
                 dates: Object.keys(markedDates)
             });
         }
@@ -94,12 +94,12 @@ export function Scheduling(){
 
     return (
     <Container>
-        <StatusBar 
-            barStyle="light-content"
-            translucent
-            backgroundColor="transparent"
-        />
         <Header>
+            <StatusBar 
+                barStyle="light-content"
+                translucent
+                backgroundColor="transparent"
+            />
             <BackButton 
             onPress={handleBack}
             color= {theme.colors.background_secondary}
