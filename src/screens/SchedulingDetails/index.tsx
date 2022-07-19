@@ -6,9 +6,10 @@ import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Accessory } from '../../components/Accessory';
 import Button from '../../components/Button';
-import { NavigationProp, ParamListBase, useNavigation, useRoute, useTheme } from '@react-navigation/native';
+import { NavigationProp, ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
 import { api } from '../../services/api';
 import { Alert } from 'react-native';
+import { useTheme } from 'styled-components'; 
 
 import { format } from 'date-fns';
 
@@ -45,6 +46,7 @@ import {
 } from './styles';
 
 
+
 interface Params {
   car: CarDTO;
   dates: string[];
@@ -60,7 +62,9 @@ interface AxiosResponse {
 }
 
 export function SchedulingDetails(){
+  const [loading, setLoading] = useState(false);
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({} as RentalPeriod);
+  
   const theme = useTheme();
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
   const route = useRoute();
@@ -78,7 +82,9 @@ export function SchedulingDetails(){
 
     await api.post('/schedules_byuser', {
       user_id: 1,
-      car
+      car,
+      starDate: format(getPlatformDate(new Date(dates[0])), 'dd/MM/yyyy'),
+      endDate: format(getPlatformDate(new Date(dates[dates.length - 1])), 'dd/MM/yyyy')
     })
     
     api.put<AxiosResponse>(`/schedules_bycars/${car.id}`, {
@@ -86,7 +92,10 @@ export function SchedulingDetails(){
       unavailable_dates
     })
     .then(() => navigation.navigate('SchedulingComplete'))
-    .catch(() => Alert.alert('Não foi possível confirmar o agendamento.'));
+    .catch(() => {
+      setLoading(false);
+      Alert.alert('Não foi possível confirmar o agendamento.')
+    })
     
   }
     
@@ -158,7 +167,7 @@ export function SchedulingDetails(){
       <Feather
           name='chevron-right'
           size={RFValue(10)}
-          color={theme.colors.background}
+          color={theme.colors.background_primary}
         />
 
       <DateInfo>
@@ -179,7 +188,13 @@ export function SchedulingDetails(){
   </Content>
 
   <Footer>
-    <Button title="Alugar agora" color={theme.colors.primary} onPress={handleConfirmRental}/>
+    <Button 
+      title="Alugar agora" 
+      color={theme.colors.success} 
+      onPress={handleConfirmRental}
+      enabled={!loading}
+      loading={loading}
+    />
   </Footer>
 
  </Container>
