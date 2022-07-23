@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ParamListBase, NavigationProp, useNavigation } from '@react-navigation/native';
 import { useTheme} from 'styled-components';
-import { StatusBar, StyleSheet } from 'react-native';
+import { BackHandler, StatusBar, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import {RFValue} from 'react-native-responsive-fontsize';
 import { RectButton, PanGestureHandler } from 'react-native-gesture-handler';
@@ -10,7 +10,7 @@ import Animated, {
     useSharedValue,
     useAnimatedStyle,
     useAnimatedGestureHandler,
-
+    withSpring,
 } from 'react-native-reanimated';
 
  const ButtonAnimated = Animated.createAnimatedComponent(RectButton);
@@ -21,7 +21,7 @@ import { CarDTO } from '../../dtos/CarDTO';
 
 
 import { Car } from '../../components/Car';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 import {
  Container,
@@ -51,15 +51,19 @@ export function Home(){
     });
 
     const onGestureEvent = useAnimatedGestureHandler({
-        onStart(){
-
+        onStart(_, ctx: any){
+            ctx.positionX = positionX.value;
+            ctx.positionY = positionY.value;
         },
-        onActive(event){
+        onActive(event, ctx: any){
+            // positionX.value = ctx.translationX + event.translationX;
+            // positionY.value = ctx.translationY + event.translationY;
             positionX.value = event.translationX;
             positionY.value = event.translationY;
         },
         onEnd(){
-
+            positionX.value = withSpring(0);
+            positionY.value = withSpring(0);;
         }
     });
 
@@ -99,6 +103,12 @@ export function Home(){
         fetchCars();
     }, []);
 
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            return true;
+        })
+    }, []);
+
  return (
  <Container>
     <StatusBar 
@@ -113,15 +123,17 @@ export function Home(){
                         width={RFValue(108)}
                         height={RFValue(12)}
                     />
-                    <TotalCar>
-                        Total de {cars.length} carros
-                    </TotalCar>                             
-                
+                    {
+                        !loading &&
+                        <TotalCar>
+                            Total de {cars.length} carros
+                        </TotalCar>                             
+                    }
         </HeaderContent>
     </Header>     
 
     { 
-        loading ?  <Load /> :
+        loading ?  <LoadAnimation /> :
 
             <CarList
             data={cars}

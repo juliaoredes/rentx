@@ -8,7 +8,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "api": "json-server ./src/services/server.json --host 192.168.43.168 --port 3333 --delay 700"
+    "api": "json-server ./src/services/server.json --host 192.168.1.99 --port 3333 --delay 700"
   },
   "dependencies": {
     "@expo-google-fonts/archivo": "^0.2.2",
@@ -24,6 +24,7 @@
     "expo-splash-screen": "~0.15.1",
     "expo-status-bar": "~1.3.0",
     "hammerjs": "^2.0.8",
+    "lottie-react-native": "5.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-gesture-handler": "^0.0.5",

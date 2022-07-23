@@ -1,5 +1,11 @@
 import React from 'react';
-import 'react-native-gesture-handler';
+
+import { LogBox } from 'react-native'
+
+LogBox.ignoreLogs([
+    'ViewPropTypes will be removed from React Native. Migrate to ViewPropTypes exported from \'deprecated-react-native-prop-types\'.'
+])
+
 
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';

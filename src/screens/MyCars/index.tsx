@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 
 import { BackButton } from '../../components/BackButton';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 import { Car } from '../../components/Car';
 import { CarDTO } from '../../dtos/CarDTO';
@@ -62,12 +62,12 @@ export function MyCars(){
     },[])
  return (
  <Container>
+    <StatusBar 
+            barStyle="light-content"
+            backgroundColor="transparent"
+            translucent
+    />
     <Header>
-        <StatusBar 
-                barStyle="light-content"
-                translucent
-                backgroundColor="transparent"
-        />
             <BackButton 
             onPress={handleBack}
             color= {theme.colors.background_secondary}
@@ -85,7 +85,7 @@ export function MyCars(){
     </Header>
 
     { 
-        loading ? <Load /> : 
+        loading ? <LoadAnimation /> : 
             <Content>
                 <Appointments>
                     <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>

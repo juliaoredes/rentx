@@ -21,6 +21,9 @@ export function StackRoutes(){
             <Screen
                 name='Splash'
                 component={Splash}
+                options={{
+                    gestureEnabled: false,
+                }}
             />
             <Screen
                 name='Home'
