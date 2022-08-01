@@ -95,11 +95,11 @@ export function Scheduling(){
     return (
     <Container>
         <Header>
-            <StatusBar 
+            {/* <StatusBar 
                 barStyle="light-content"
                 translucent
                 backgroundColor="transparent"
-            />
+            /> */}
             <BackButton 
             onPress={handleBack}
             color= {theme.colors.background_secondary}

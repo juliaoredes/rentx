@@ -31,7 +31,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as SplashScreen from 'expo-splash-screen' 
 import { Scheduling } from './src/screens/Scheduling';
 import { SchedulingDetails } from './src/screens/SchedulingDetails';
-import { SchedulingComplete } from './src/screens/SchedulingComplete';
+import { Confirmation } from './src/screens/Confirmation';
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
