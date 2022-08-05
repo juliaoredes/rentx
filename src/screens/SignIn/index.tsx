@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
+import { 
+    NavigationProp, 
+    ParamListBase, 
+    useNavigation 
+} from '@react-navigation/native';
+
 import { 
     StatusBar,
     KeyboardAvoidingView,
@@ -10,6 +15,8 @@ import {
 import * as Yup from 'yup';
 
 import theme from '../../styles/theme';
+import { useAuth } from '../../hooks/auth';
+
 
 import { Inputs } from '../../components/Inputs';
 import { PasswordInputs } from '../../components/PasswordInputs';
@@ -31,6 +38,7 @@ export function SignIn(){
     const [password, setPassword] = useState('');
     
     const navigation = useNavigation<NavigationProp<ParamListBase>>();
+    const { signIn } = useAuth();
 
     async function handleSignIn(){
         try {
@@ -44,6 +52,8 @@ export function SignIn(){
             });
                 await schema.validate({ email, password });
                 Alert.alert('Tudo certo');
+
+                signIn({ email, password });
         } catch (error) {
             if(error instanceof Yup.ValidationError){
                 return Alert.alert('Opa', error.message);

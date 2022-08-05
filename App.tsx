@@ -1,4 +1,7 @@
 import React from 'react';
+import AppLoading from 'expo-app-loading';
+import { ThemeProvider } from 'styled-components';
+import { AppProvider } from './src/hooks';
 
 import { LogBox } from 'react-native'
 
@@ -7,8 +10,6 @@ LogBox.ignoreLogs([
 ])
 
 
-import AppLoading from 'expo-app-loading';
-import { ThemeProvider } from 'styled-components';
 
 import {
   useFonts,
@@ -52,7 +53,9 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1}}>
     <ThemeProvider theme={theme}>
-      <Routes />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
     </ThemeProvider>
     </GestureHandlerRootView>
   );

@@ -24,6 +24,7 @@ import {
     Form,
     FormTitle,
 } from './styles';
+import { useAuth } from '../../../hooks/auth';
 
 
 export function SignUpFirstStep(){
@@ -32,7 +33,8 @@ export function SignUpFirstStep(){
     const [driverLicense, setDriverLicense] = useState('');
 
     const navigation = useNavigation<NavigationProp<ParamListBase>>();
-
+    const { user } = useAuth();
+    console.log('USUÁRIO AUTENTICADO', user);
 
 
     function handleBack(){
